@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/tp3", // change this to the executable file name
-            "args": ["tarefa1", "${workspaceFolder}/testes/ct00.txt"], // change the args too as needed
+            "args": ["tarefa1", "${workspaceFolder}/testes/ct03.txt"], // change the args too as needed
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],

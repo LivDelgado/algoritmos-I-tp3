@@ -3,8 +3,10 @@
 #include "leitura/leitor.hpp"
 #include "grafo/resolvedor.hpp"
 #include "grafo/vila.hpp"
+#include "grafo/aproximador.hpp"
 
 #include <vector>
+#include <set>
 
 int main (int argc, char* argv[]) {
     try {
@@ -18,12 +20,16 @@ int main (int argc, char* argv[]) {
         leitura::Leitor leitor = leitura::Leitor(argv[1], argv[2]);
         leitor.lerArquivo();
 
-        grafo::Resolvedor resolvedor = grafo::Resolvedor(leitor.getTrilhas(), leitor.getNumeroVilas());
-        std::vector<grafo::Vila> vilas = resolvedor.getVilasParaConstruirDeposito();
+        if (leitor.getTipoTarefa() == 1) {
+            grafo::Resolvedor resolvedor = grafo::Resolvedor(leitor.getTrilhas(), leitor.getNumeroVilas());
+            std::vector<grafo::Vila> vilas = resolvedor.getVilasParaConstruirDeposito();
 
-        std::cout << vilas.size() << std::endl;
+            std::cout << vilas.size() << std::endl;
+        } else {
+            grafo::Aproximador aproximador = grafo::Aproximador(leitor.getTrilhas());
+            std::set<int> vilas = aproximador.getVilasParaConstruirDeposito();
 
-        if (leitor.getTipoTarefa() == 2) {
+            std::cout << vilas.size() << std::endl;
             for (grafo::Vila vila : vilas) {
                 std::cout << vila.getIndice() << std::endl;
             }
