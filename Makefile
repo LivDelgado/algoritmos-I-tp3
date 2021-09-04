@@ -14,7 +14,7 @@ SRCEXT := cpp
 
 # all sources, objs, and header files
 MAIN = main
-TARGET = program # change that to the executable file you want to generate
+TARGET = tp3 # change that to the executable file you want to generate
 
 SRC = $(shell find $(SRC_FOLDER) -type f -name *.$(SRCEXT))
 OBJ = $(patsubst $(SRC_FOLDER)/%.cpp, $(OBJ_FOLDER)%.o, $(SRC))
