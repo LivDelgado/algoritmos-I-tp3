@@ -6,16 +6,16 @@
 #include <string>
 #include <fstream>
 
-#include "grafo/vertice.hpp"
+#include "grafo/trilha.hpp"
 
 namespace leitura {
     class Leitor {
         private:
             std::string caminhoArquivo;
             int tipoTarefa;
-            int numeroVertices;
             int numeroTrilhas;
-            std::vector<grafo::Vertice> vertices;
+            int numeroVilas;
+            std::vector<grafo::Trilha> trilhas;
 
         public:
             Leitor(std::string tipoTarefa, std::string caminhoArquivo);
@@ -23,9 +23,9 @@ namespace leitura {
             void lerArquivo();
 
             int getTipoTarefa();
-            int getNumeroVertices();
+            int getNumeroVilas();
             int getNumeroTrilhas();
-            std::vector<grafo::Vertice> getVertices();
+            std::vector<grafo::Trilha> getTrilhas();
     };
 
 }

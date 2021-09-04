@@ -1,15 +1,15 @@
-#ifndef VERTICE
-#define VERTICE
+#ifndef TRILHA
+#define TRILHA
 
 namespace grafo {
-    class Vertice {
+    class Trilha {
         private:
             int u;
             int v;
 
         public:
-            Vertice();
-            Vertice(int u, int v);
+            Trilha();
+            Trilha(int u, int v);
 
             int getU();
             int getV();

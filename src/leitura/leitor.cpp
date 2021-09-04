@@ -6,9 +6,9 @@ Leitor::Leitor(std::string tipoTarefa, std::string caminhoArquivo) {
     this->caminhoArquivo = caminhoArquivo;
     this->tipoTarefa = tipoTarefa.back() - '0';
 
-    this->numeroVertices = 0;
     this->numeroTrilhas = 0;
-    this->vertices = std::vector<grafo::Vertice>();
+    this->numeroTrilhas = 0;
+    this->trilhas = std::vector<grafo::Trilha>();
 }
 
 void Leitor::lerArquivo() {
@@ -27,14 +27,14 @@ void Leitor::lerArquivo() {
             segundoValor = std::stoi(linha.substr(indiceEspaco));
 
             if (contador == 0) {
-                this->numeroVertices = primeiroValor;
+                this->numeroTrilhas = primeiroValor;
                 this->numeroTrilhas = segundoValor;
             } else {
                 if (contador > this->numeroTrilhas) {
                     throw "Número de linhas é maior que o desejado!";
                 }
-                grafo::Vertice novoVertice = grafo::Vertice(primeiroValor, segundoValor);
-                this->vertices.push_back(novoVertice);
+                grafo::Trilha novaTrilha = grafo::Trilha(primeiroValor, segundoValor);
+                this->trilhas.push_back(novaTrilha);
             }
 
             contador++;
@@ -56,6 +56,6 @@ int Leitor::getNumeroTrilhas() {
     return this->numeroTrilhas;
 }
 
-std::vector<grafo::Vertice> Leitor::getVertices() {
-    return this->vertices;
+std::vector<grafo::Trilha> Leitor::getTrilhas() {
+    return this->trilhas;
 }
