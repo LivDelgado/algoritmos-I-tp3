@@ -1,6 +1,10 @@
 #include <iostream>
 
 #include "leitura/leitor.hpp"
+#include "grafo/resolvedor.hpp"
+#include "grafo/vila.hpp"
+
+#include <vector>
 
 int main (int argc, char* argv[]) {
     try {
@@ -13,6 +17,18 @@ int main (int argc, char* argv[]) {
         
         leitura::Leitor leitor = leitura::Leitor(argv[1], argv[2]);
         leitor.lerArquivo();
+
+        grafo::Resolvedor resolvedor = grafo::Resolvedor(leitor.getTrilhas(), leitor.getNumeroVilas());
+        std::vector<grafo::Vila> vilas = resolvedor.getVilasParaConstruirDeposito();
+
+        std::cout << vilas.size() << std::endl;
+
+        if (leitor.getTipoTarefa() == 2) {
+            for (grafo::Vila vila : vilas) {
+                std::cout << vila.getIndice() << std::endl;
+            }
+        }
+
     } catch (char const* excecao){
         std::cout << excecao << std::endl;
         return 0;

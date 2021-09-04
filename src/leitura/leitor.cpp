@@ -27,7 +27,7 @@ void Leitor::lerArquivo() {
             segundoValor = std::stoi(linha.substr(indiceEspaco));
 
             if (contador == 0) {
-                this->numeroTrilhas = primeiroValor;
+                this->numeroVilas = primeiroValor;
                 this->numeroTrilhas = segundoValor;
             } else {
                 if (contador > this->numeroTrilhas) {
@@ -48,8 +48,8 @@ int Leitor::getTipoTarefa() {
     return this->tipoTarefa;
 }
 
-int Leitor::getNumeroVertices() {
-    return this->numeroVertices;
+int Leitor::getNumeroVilas() {
+    return this->numeroVilas;
 }
 
 int Leitor::getNumeroTrilhas() {
