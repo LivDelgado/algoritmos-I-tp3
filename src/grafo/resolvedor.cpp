@@ -32,11 +32,11 @@ void Resolvedor::resolverVilasAdjacentes() {
 }
 
 bool compararVilaPeloGrau (Vila u, Vila v) {
-    return u.getGrau() < v.getGrau();
+    return (u.getGrau() <= v.getGrau());
 }
 
 void Resolvedor::ordenarVilasPeloNumeroDeTrilhas() {
-    std::sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloGrau);
+    std::stable_sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloGrau);
     this->vilasOrdenadas = this->vilas;
 }
 
