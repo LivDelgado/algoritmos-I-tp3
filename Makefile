@@ -31,3 +31,6 @@ clean:
 
 test: $(TARGET)
 	@bash run_tests.sh ./$(TARGET) tarefa1 $(TEST_OUTPUT)
+
+test2: $(TARGET)
+	@bash run_tests_2.sh ./$(TARGET) tarefa2 $(TEST_OUTPUT)
