@@ -40,7 +40,7 @@ bool compararVilaPeloIndice (Vila u, Vila v) {
 }
 
 void Resolvedor::ordenarVilasPeloNumeroDeTrilhas() {
-    std::stable_sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloGrau);
+    std::sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloGrau);
     this->vilasOrdenadas = this->vilas;
 }
 
