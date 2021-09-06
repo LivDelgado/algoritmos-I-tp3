@@ -6,4 +6,3 @@ for i in {2..5..1}; do
         $EXEC tarefa1 testes/performance/$i/$j.txt
     done
 done
-rm $TMP_OUT
