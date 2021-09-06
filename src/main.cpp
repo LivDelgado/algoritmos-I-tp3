@@ -20,14 +20,14 @@ int executarPrograma (int argc, char* argv[]) {
     leitura::Leitor leitor = leitura::Leitor(argv[1], argv[2]);
     leitor.lerArquivo();
 
-    grafo::Resolvedor resolvedor = grafo::Resolvedor(leitor.getTrilhas(), leitor.getNumeroVilas());
-    std::vector<grafo::Vila> vilas = resolvedor.getVilasParaConstruirDeposito();
+    grafo::Resolvedor resolvedor = grafo::Resolvedor(leitor.getTrilhas(), leitor.getVilas());
+    std::vector<grafo::Vila*> vilas = resolvedor.getVilasParaConstruirDeposito();
 
     //std::cout << vilas.size() << std::endl;
 
     if (leitor.getTipoTarefa() == 2) {
-        for (grafo::Vila vila : vilas) {
-            std::cout << vila.getIndice() << std::endl;
+        for (grafo::Vila* vila : vilas) {
+            std::cout << vila->getIndice() << std::endl;
         }
     }
 
