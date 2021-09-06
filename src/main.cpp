@@ -23,7 +23,7 @@ int executarPrograma (int argc, char* argv[]) {
     grafo::Resolvedor resolvedor = grafo::Resolvedor(leitor.getTrilhas(), leitor.getNumeroVilas());
     std::vector<grafo::Vila> vilas = resolvedor.getVilasParaConstruirDeposito();
 
-    std::cout << vilas.size() << std::endl;
+    //std::cout << vilas.size() << std::endl;
 
     if (leitor.getTipoTarefa() == 2) {
         for (grafo::Vila vila : vilas) {
