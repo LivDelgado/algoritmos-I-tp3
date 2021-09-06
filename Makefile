@@ -34,3 +34,6 @@ test: $(TARGET)
 
 test2: $(TARGET)
 	@bash run_tests_2.sh ./$(TARGET) tarefa2 $(TEST_OUTPUT)
+
+performance: $(TARGET)
+	@bash performance.sh ./$(TARGET)
