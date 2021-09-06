@@ -32,7 +32,11 @@ void Resolvedor::resolverVilasAdjacentes() {
 }
 
 bool compararVilaPeloGrau (Vila u, Vila v) {
-    return u.getGrau() < v.getGrau();
+    return (u.getGrau() < v.getGrau());
+}
+
+bool compararVilaPeloIndice (Vila u, Vila v) {
+    return (u.getIndice() < v.getIndice());
 }
 
 void Resolvedor::ordenarVilasPeloNumeroDeTrilhas() {
@@ -73,5 +77,6 @@ std::vector<Vila>::iterator Resolvedor::encontrarIndiceVila(Vila vila) {
 
 std::vector<Vila> Resolvedor::getVilasParaConstruirDeposito() {
     this->resolver();
+    std::sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloIndice);
     return this->vilas;
 }

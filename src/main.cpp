@@ -3,8 +3,10 @@
 #include "leitura/leitor.hpp"
 #include "grafo/resolvedor.hpp"
 #include "grafo/vila.hpp"
+#include "grafo/aproximador.hpp"
 
 #include <vector>
+#include <set>
 
 int main (int argc, char* argv[]) {
     try {
@@ -28,7 +30,6 @@ int main (int argc, char* argv[]) {
                 std::cout << vila.getIndice() << std::endl;
             }
         }
-
     } catch (char const* excecao){
         std::cout << excecao << std::endl;
         return 0;

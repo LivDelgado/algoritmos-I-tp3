@@ -29,5 +29,8 @@ all: $(OBJ)
 clean:
 	@rm -rf $(OBJ_FOLDER)* $(TARGET)
 
-test-with-file-input: $(TARGET)
-	@bash run_tests.sh ./$(TARGET) $(TEST_OUTPUT)
+test: $(TARGET)
+	@bash run_tests.sh ./$(TARGET) tarefa1 $(TEST_OUTPUT)
+
+test2: $(TARGET)
+	@bash run_tests_2.sh ./$(TARGET) tarefa2 $(TEST_OUTPUT)
