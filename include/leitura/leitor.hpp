@@ -7,6 +7,7 @@
 #include <fstream>
 
 #include "grafo/trilha.hpp"
+#include "grafo/vila.hpp"
 
 namespace leitura {
     class Leitor {
@@ -15,7 +16,10 @@ namespace leitura {
             int tipoTarefa;
             int numeroTrilhas;
             int numeroVilas;
-            std::vector<grafo::Trilha> trilhas;
+            std::vector<grafo::Trilha*> trilhas;
+            std::vector<grafo::Vila*> vilas;
+
+            void inicializarVilas();
 
         public:
             Leitor(std::string tipoTarefa, std::string caminhoArquivo);
@@ -25,7 +29,8 @@ namespace leitura {
             int getTipoTarefa();
             int getNumeroVilas();
             int getNumeroTrilhas();
-            std::vector<grafo::Trilha> getTrilhas();
+            std::vector<grafo::Trilha*> getTrilhas();
+            std::vector<grafo::Vila*> getVilas();
     };
 
 }

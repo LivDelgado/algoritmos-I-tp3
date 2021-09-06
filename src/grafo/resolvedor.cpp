@@ -2,81 +2,62 @@
 
 using namespace grafo;
 
-Resolvedor::Resolvedor(std::vector<Trilha> trilhas, int numeroVilas) {
+bool compararVilaPeloGrau (Vila* u, Vila* v) {
+    return (u->getGrau() < v->getGrau());
+}
+
+bool compararVilaPeloIndice (Vila* u, Vila* v) {
+    return (u->getIndice() < v->getIndice());
+}
+
+
+Resolvedor::Resolvedor(std::vector<Trilha*> trilhas, std::vector<Vila*> vilas) {
     this->trilhas = trilhas;
-
-    for (int i = 0; i < numeroVilas; i++) {
-        this->vilas.push_back(Vila(i));
-    }
-
+    this->vilas = vilas;
+    this->vilasComDeposito = std::vector<grafo::Vila*>();
 }
 
 void Resolvedor::resolver() {
-    this->resolverVilasAdjacentes();
     this->ordenarVilasPeloNumeroDeTrilhas();
     this->selecionarVilasParaConstruirDeposito();
 }
 
-void Resolvedor::resolverVilasAdjacentes() {
-    int u = 0;
-    int v = 0;
-
-    for (Trilha trilha : this->trilhas) {
-        u = trilha.getU();
-        v = trilha.getV();
-
-        this->vilas.at(u).adicionarVilaAdjacente(this->vilas.at(v));
-        this->vilas.at(v).adicionarVilaAdjacente(this->vilas.at(u));
-
-    }
-}
-
-bool compararVilaPeloGrau (Vila u, Vila v) {
-    return (u.getGrau() < v.getGrau());
-}
-
-bool compararVilaPeloIndice (Vila u, Vila v) {
-    return (u.getIndice() < v.getIndice());
-}
-
 void Resolvedor::ordenarVilasPeloNumeroDeTrilhas() {
-    std::sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloGrau);
     this->vilasOrdenadas = this->vilas;
+    std::sort(this->vilasOrdenadas.begin(), this->vilasOrdenadas.end(), compararVilaPeloGrau);
 }
 
 void Resolvedor::selecionarVilasParaConstruirDeposito() {
-    bool deletarVila = true;
+    bool deletada = true;
 
-    for (Vila vila : this->vilasOrdenadas) {
-        deletarVila = true;
-
+    for (Vila* vila : this->vilasOrdenadas) {
+        deletada = true;
         // deletar a vila se todas as vilas adjacentes ainda estão na lista
-        for (Vila vilaAdjacente : vila.getVilasAdjacentes()) {
+        for (Vila* vilaAdjacente : vila->getVilasAdjacentes()) {
             bool vilaExiste = this->vilaExiste(vilaAdjacente);
 
             if (!vilaExiste) {
-                deletarVila = false;
+                deletada = false;
+                this->vilasComDeposito.push_back(vila);
                 break;
             }
         }
 
-        if (deletarVila) {
-            this->vilas.erase(encontrarIndiceVila(vila));
-        }
+        vila->setDeletada(deletada);
     }
 }
 
-bool Resolvedor::vilaExiste(Vila vila) {
-    return encontrarIndiceVila(vila) != this->vilas.end();
+bool Resolvedor::vilaExiste(Vila* vila) {
+    return !this->vilas[vila->getIndice()]->getDeletada();
 }
 
-std::vector<Vila>::iterator Resolvedor::encontrarIndiceVila(Vila vila) {
-    std::vector<Vila>::iterator it = std::find(this->vilas.begin(), this->vilas.end(), vila);
+std::vector<Vila*>::iterator Resolvedor::encontrarIndiceVila(Vila* vila) {
+    std::vector<Vila*>::iterator it = std::find(this->vilas.begin(), this->vilas.end(), vila);
     return it;
 }
 
-std::vector<Vila> Resolvedor::getVilasParaConstruirDeposito() {
+std::vector<Vila*> Resolvedor::getVilasParaConstruirDeposito() {
     this->resolver();
-    std::sort(this->vilas.begin(), this->vilas.end(), compararVilaPeloIndice);
-    return this->vilas;
+    std::sort(this->vilasComDeposito.begin(), this->vilasComDeposito.end(), compararVilaPeloIndice);
+    return this->vilasComDeposito;
 }
