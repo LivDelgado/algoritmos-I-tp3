@@ -38,21 +38,9 @@ void Resolvedor::selecionarVilasParaConstruirDeposito() {
 
             if (!vilaExiste) {
                 deletada = false;
-
-                for (Vila* vilaAA : vilaAdjacente->getVilasAdjacentes()) {
-                    bool vilaAAExiste = this->vilaExiste(vilaAA);
-                    if (vilaAAExiste && vilaAA != vila) {
-                        deletada = true;
-                        break;
-                    }
-                }
-            }
-
-            if (!deletada) {
                 this->vilasComDeposito.push_back(vila);
                 break;
             }
-
         }
 
         vila->setDeletada(deletada);
