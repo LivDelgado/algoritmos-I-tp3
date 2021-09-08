@@ -3,6 +3,7 @@
 
 #include <set>
 #include <vector>
+#include <algorithm>
 
 #include "grafo/trilha.hpp"
 
@@ -10,12 +11,12 @@ namespace grafo {
     class Aproximador {
         private:
             std::set<int> vilasComDeposito;
-            std::vector<Trilha> trilhas;
+            std::vector<Trilha*> trilhas;
 
             void removerTrilhasIncidentesAVilasAdicionadas(int u, int v);
 
         public:
-            Aproximador(std::vector<Trilha> trilhas);
+            Aproximador(std::vector<Trilha*> trilhas);
 
             std::set<int> getVilasParaConstruirDeposito();
     };

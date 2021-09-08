@@ -2,7 +2,7 @@ EXEC=$1
 TAREFA=$2
 TMP_OUT=$3
 
-for i in {0..1..1}; do # trocar pelo número de testes
+for i in {0..5..1}; do # trocar pelo número de testes
 
   testname=$(printf "ct0%01d" $i) # trocar pelo modelo de nome da entrada
 
